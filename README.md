@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ETF Chat Assistant
+
+An AI-powered chat application that helps users learn about Exchange-Traded Funds (ETFs) using RAG (Retrieval-Augmented Generation) technology. The application combines OpenAI's language models with up-to-date ETF data to provide accurate, contextual information about ETF investing.
+
+## Features
+
+- 🤖 AI-powered chat interface for ETF-related questions
+- 📊 Real-time ETF data integration
+- 💡 Smart prompt suggestions for common ETF queries
+- ✨ Streaming responses for better user experience
+- 🔍 RAG implementation for accurate, data-backed answers
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TailwindCSS
+- **AI/ML**: OpenAI GPT-3.5 Turbo, Text Embeddings
+- **Database**: Astra DB (for vector storage)
+- **API**: Next.js API Routes with streaming support
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up your environment variables:
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+ASTRA_DB_APPLICATION_TOKEN=your_astra_token
+ASTRA_DB_API_ENDPOINT=your_astra_endpoint
+ASTRA_DB_NAMESPACE=your_namespace
+ASTRA_DB_COLLECTION=your_collection
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to start chatting about ETFs!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. The application maintains a database of current ETF information using vector embeddings
+2. When a user asks a question, the system:
+   - Creates an embedding of the user's query
+   - Retrieves relevant ETF information from the vector database
+   - Combines this information with GPT-3.5's knowledge to generate accurate responses
+3. Responses are streamed in real-time for better user experience
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
