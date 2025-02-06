@@ -24,26 +24,26 @@ export const ChatContainer = () => {
     if (!input.trim() || isLoading) return;
     setIsLoading(true);
 
-    const newMessages = [...conversation, { role: 'user', content: input }];
+    const newMessages = [...conversation, { role: "user", content: input }];
     setConversation(newMessages);
     setInput("");
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
+      const response = await fetch("/api/chat", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ messages: newMessages }),
       });
 
       if (!response.ok || !response.body) {
-        throw new Error('Failed to fetch response');
+        throw new Error("Failed to fetch response");
       }
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-      let assistantMessage = '';
+      let assistantMessage = "";
 
       while (true) {
         const { done, value } = await reader.read();
@@ -54,24 +54,24 @@ export const ChatContainer = () => {
 
         setConversation([
           ...newMessages,
-          { role: 'assistant', content: assistantMessage}
-        ])
+          { role: "assistant", content: assistantMessage },
+        ]);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   const noMessages = !conversation || conversation.length === 0;
 
   const handlePromptClick = (promptText: string) => {
     const msg: Message = {
       content: promptText,
-      role: 'user'
-    }
-  }
+      role: "user",
+    };
+  };
 
   return (
     <section className="w-full max-w-4xl mx-auto px-4 py-32 md:py-48">

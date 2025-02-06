@@ -40,7 +40,7 @@ export async function POST(req: Request) {
             $vector: embedding.data[0].embedding,
           },
           limit: 10,
-        }
+        },
       );
 
       const documents = await cursor.toArray();
@@ -94,7 +94,6 @@ export async function POST(req: Request) {
         "Transfer-Encoding": "chunked",
       },
     });
-
   } catch (err) {
     console.error("Chat API error:", err);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {
