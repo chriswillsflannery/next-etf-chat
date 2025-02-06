@@ -1,16 +1,18 @@
-import PromptSuggestionButton from './PromptSuggestionButton'
+import PromptSuggestionButton from "./PromptSuggestionButton";
 
 interface PromptSuggestionsRowProps {
   handlePrompt: (prompt: string) => void;
 }
 
-const PromptSuggestionsRow: React.FC<PromptSuggestionsRowProps> = ({ handlePrompt }) => {
+const PromptSuggestionsRow: React.FC<PromptSuggestionsRowProps> = ({
+  handlePrompt,
+}) => {
   const prompts = [
-    'What is the current NAV of the S&P 500 ETF?',
-    'How many stocks are in the Vanguard S&P 500 ETF?',
-    'What is the expense ratio of the S&P 500 ETF?',
-    'What is the gross expense ratio of the SPDR ETF?',
-  ]
+    "What is the current NAV of the S&P 500 ETF?",
+    "How many stocks are in the Vanguard S&P 500 ETF?",
+    "What is the expense ratio of the S&P 500 ETF?",
+    "What is the gross expense ratio of the SPDR ETF?",
+  ];
 
   return (
     <div className="w-full max-w-4xl mx-auto py-4">
@@ -24,7 +26,7 @@ const PromptSuggestionsRow: React.FC<PromptSuggestionsRowProps> = ({ handlePromp
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PromptSuggestionsRow
+export default PromptSuggestionsRow;
