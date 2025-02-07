@@ -1,18 +1,14 @@
 "use client";
-// import { useChat } from "ai/react";
 import LoadingBubble from "../components/LoadingBubble";
 import PromptSuggestionsRow from "../components/PromptSuggestionsRow";
 import Bubble from "../components/Bubble";
 import { useState } from "react";
-import { readStreamableValue } from "ai/rsc";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
-// Allow streaming responses up to 30 seconds
-export const MAX_STREAMING_TIME = 30;
 
 export const ChatContainer = () => {
   const [conversation, setConversation] = useState<Message[]>([]);
@@ -24,7 +20,10 @@ export const ChatContainer = () => {
     if (!input.trim() || isLoading) return;
     setIsLoading(true);
 
-    const newMessages = [...conversation, { role: "user", content: input }];
+    const newMessages: Message[] = [
+      ...conversation,
+      { role: "user", content: input },
+    ];
     setConversation(newMessages);
     setInput("");
 
@@ -71,6 +70,8 @@ export const ChatContainer = () => {
       content: promptText,
       role: "user",
     };
+    setConversation([...conversation, msg]);
+    setInput("");
   };
 
   return (
